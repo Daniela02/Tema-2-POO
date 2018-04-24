@@ -10,6 +10,22 @@ using namespace std;
 ifstream f("dateIN.txt");
 ofstream g("date.out");
 StivaPereche S1, S2;
+void reverse(StivaPereche &S)
+{
+	CoadaPereche C;
+	C.ModificaTop(S.Top());
+	int val;
+	while (S.size())
+	{
+		S.erase(val, 1);
+		C.add(val, 1);
+	}
+	while (C.size())
+	{
+		C.erase(val, 1);
+		S.add(val, 1);
+	}
+}
 void AdaugaCoada(int val)
 {
 	int y;
@@ -53,7 +69,10 @@ void Coada()
 		g << S1;
 	else
 		if (S2.size())
+		{
+			reverse(S2);
 			g << S2;
+		}
 		else
 			g << "coada este goala";
 }
